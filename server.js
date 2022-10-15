@@ -1,3 +1,4 @@
+const path = require('path')
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -10,6 +11,7 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const ticketRoutes = require("./routes/tickets");
+const morgan = require('morgan');
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -53,11 +55,18 @@ app.use(passport.session());
 //Use flash messages for errors, info, ect...
 app.use(flash());
 
+// Logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
 //Setup Routes For Which The Server Is Listening
 app.use("/", mainRoutes);
 app.use("/ticket", ticketRoutes);
 
+const PORT = process.env.PORT || 2121;
+
 //Server Running
 app.listen(process.env.PORT, () => {
-  console.log("Server is running, you better catch it!");
+  console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
 });

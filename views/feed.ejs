@@ -1,14 +1,24 @@
 <%- include('partials/header') -%>
 
   <div class="container">
+    <a href="/profile" class="btn btn-primary btn-sm"><i class="fa-solid fa-rotate-left"></i> Back to Profile</a>
     <div class="row justify-content-center mt-5">
+      <h2>My Open Tickets</h2>
+      <hr />
+      
       <ul class="row list-unstyled">
         <% for(var i=0; i<tickets.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/ticket/<%= tickets[i]._id%>">
-              <p><%= tickets[i].shortDesc%></p>
-              <p>Opened by: <%= tickets[i].user.userName%></p>
-            </a>
+
+            <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 25rem;">
+              <div class="card-body">
+                <h5 class="card-title">Ticket: <%= tickets[i]._id %></h5>
+                <h6 class="card-subtitle mb-2 text-muted">Opened by: <%= user.fullName %></h6>
+                <p class="card-text"><%= tickets[i].shortDesc %></p>
+                <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
+              </div>
+            </div>
+  
           </li>
         <% } %>
         </ul>

@@ -3,25 +3,14 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
+              <p><strong>Name</strong>: <%= user.fullName %></p>
               <p><strong>User Name</strong>: <%= user.userName %></p>
               <p><strong>Email</strong>: <%= user.email %></p>
               <p><strong>Role</strong>: <%= user.role %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
           <div class="mt-5">
-            <h2>Submit a ticket</h2>
-
-            <form action="/ticket/createTicket" method="POST">
-              <div class="mb-3">
-                  <label for="shortDesc" class="form-label">Short Description</label>
-                  <input type="text" class="form-control" id="shortDesc" name="shortDesc">
-              </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Full description</label>
-                <textarea class="form-control" id="description" name="description"></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
+            <a class="btn btn-primary" href="/ticket/createTicket">Submit a New Ticket</a>
           </div>
       </div>
       <div class="col-6">
@@ -30,13 +19,13 @@
           <li class="col-6 justify-content-between mt-5">
             <a href="/ticket/<%= tickets[i]._id%>">
               <p><%= tickets[i].shortDesc%></p>
-              <p>Opened by: <%= user.userName%></p>
+              <p>Opened by: <%= user.fullName%></p>
             </a>
           </li>
         <% } %>
         </ul>
         <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          <a class="btn btn-primary" href="/feed">List All Open Tickets</a>
         </div>  
       </div>  
     </div>
