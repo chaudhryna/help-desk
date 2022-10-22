@@ -1,29 +1,37 @@
 <%- include('partials/header') -%>
 
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= ticket.shortDesc %></h2>
-      <h3>Opened by: <%= user.fullName %></h3>
-    
-      <div class="row">
-        <%if(ticket.user == user.id){ %>
-        <form action="/ticket/deleteTicket/<%= ticket.id %>?_method=DELETE"
-          method="POST" class="col-3">
-          <button class="btn btn-danger" type="submit">
-          <i class="fa-solid fa-trash fa-lg"></i></button>
-        </form>
-        <%}%>
+  <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 30rem;">
+        <div class="card-body">
+          <h5 class="card-title">Ticket: <%= ticket._id %>
+          </h5>
+          <h6 class="card-subtitle mb-2 text-muted">Opened by: <%= ticket.user.firstName %> <%= ticket.user.lastName %>
+          </h6>
+          <hr>  
+          <p>
+            <strong>Type of Issue:</strong>  <%= ticket.typeOfTicket %>
+          </p>
+          <p class="card-text">
+            <%= ticket.shortDesc %>
+          </p>
+          <p>
+            <%= ticket.details %>
+          </p>
+          <% if (ticket.user._id == user.id){ %>
+            <form action="/ticket/deleteTicket/<%= ticket._id %>?_method=DELETE" method="POST" class="col-3">
+              <button class="btn btn-danger" type="submit">
+                <i class="fa-solid fa-trash fa-lg"></i></button>
+            </form>
+          <%}%>
+  
+        </div>
+      </div>
+      <div class="text-center" mt-5">
+        <a class="btn btn-primary" href="/profile">Return to Profile Page</a>
+        <a class="btn btn-primary" href="/feed">Return to All Open Tickets</a>
       </div>
     </div>
-    <div class="col-3 mt-5">
-      <p><%= ticket.description %></p>
-    </div>
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile Page</a>
-      <a class="btn btn-primary" href="/feed">Return to All Open Tickets</a>
-    </div>
   </div>
-</div>
 
-<%- include('partials/footer') -%>
+  <%- include('partials/footer') -%>

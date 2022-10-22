@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const bcrypt = require("bcrypt");
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
   userName: { type: String, unique: true },
   firstName: String,
   lastName: String, 
@@ -20,13 +21,6 @@ const UserSchema = new mongoose.Schema({
 
 UserSchema.virtual('fullName').get(function () {
   return this.firstName + ' ' + this.lastName
-});
-
-UserSchema.virtual('fullName').set(function (name) {
-  let str = name.split(' ')
-
-  this.firstName = str[0]
-  this.lastName = str[1]
 });
 
 // Password hash middleware.

@@ -12,23 +12,16 @@
       <label for="details" class="form-label">Detailed Description</label>
       <textarea class="form-control" id="details" name="details"></textarea>
     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="hardware" value="hardware">
-      <label class="form-check-label" for="hardware">Hardware</label>
+    <div class="mb-3">
+      <label for='typeOfTicket'>Type of Issue</label>
+      <select id='typeOfTicket' class="form-select" name='typeOfTicket'>
+        <option value='hardware' selected>Hardware</option>
+        <option value='software'>Software</option>
+        <option value='account'>Account</option>
+        <option value='password'>Password</option>
+        <option value='other'>Other</option>
+      </select>
     </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="software" value="software">
-      <label class="form-check-label" for="software">Software</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="account" value="account" disabled>
-      <label class="form-check-label" for="account">Account</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="checkbox" id="passwordReset" value="passwordReset" disabled>
-      <label class="form-check-label" for="passwordReset">Password reset</label>
-    </div>
-    
 
     <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
   </form>

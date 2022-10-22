@@ -13,7 +13,7 @@
             <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 25rem;">
               <div class="card-body">
                 <h5 class="card-title">Ticket: <%= tickets[i]._id %></h5>
-                <h6 class="card-subtitle mb-2 text-muted">Opened by: <%= user.fullName %></h6>
+                <h6 class="card-subtitle mb-2 text-muted">Opened by: <%= tickets[i].user.firstName %> <%= tickets[i].user.lastName %></h6>
                 <p class="card-text"><%= tickets[i].shortDesc %></p>
                 <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
               </div>
