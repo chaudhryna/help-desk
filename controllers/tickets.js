@@ -11,8 +11,13 @@ module.exports = {
     }
   },
   getFeed: async (req, res) => {
+    let tickets 
     try {
-      const tickets = await Ticket.find().sort({ createdAt: "desc" }).populate('user').lean();
+      if (req.user.role === 'Customer') {
+        tickets = await Ticket.find({ user: req.user.id }).sort({ createdAt: "desc" }).populate('user').lean();
+      } else {
+        tickets = await Ticket.find().sort({ createdAt: "desc" }).populate('user').lean();
+      }
       res.render("feed.ejs", { tickets: tickets, user: req.user });
     } catch (err) {
       console.log(err);

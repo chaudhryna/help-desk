@@ -1,7 +1,7 @@
 <%- include('partials/header') -%>
+<%- include('partials/navbar') -%>
 
   <div class="container">
-    <a href="/profile" class="btn btn-primary btn-sm"><i class="fa-solid fa-rotate-left"></i> Back to Profile</a>
     <div class="row justify-content-center mt-5">
       <h2>My Open Tickets</h2>
       <hr />
@@ -14,7 +14,9 @@
               <div class="card-body">
                 <h5 class="card-title">Ticket: <%= tickets[i]._id %></h5>
                 <h6 class="card-subtitle mb-2 text-muted">Opened by: <%= tickets[i].user.firstName %> <%= tickets[i].user.lastName %></h6>
-                <p class="card-text"><%= tickets[i].shortDesc %></p>
+                <p class="card-text">
+                  <span class="text-muted">Subject:</span> <%= tickets[i].shortDesc %>
+                </p>
                 <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
               </div>
             </div>

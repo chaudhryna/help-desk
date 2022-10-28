@@ -1,5 +1,7 @@
 <%- include('partials/header') -%>
-    <main class="container">
+
+    <main class="container mt-5">
+        <h1 class="text-center text-primary">Help Desk</h1>
         <div class="row justify-content-center">
             <section class="col-6 mt-5">
                 <% if (locals.messages.errors) { %>
@@ -41,9 +43,9 @@
 
                     <div class="mb-3">
                       <select type="text" class="form-select" id="role" name="role">
-                        <option value="customer">Customer</option>
-                        <option value="tech">Tech</option>
-                        <option value="manager">Manager</option>
+                        <option value="Customer">Customer</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Manager">Manager</option>
                       </select>
                     </div>
 

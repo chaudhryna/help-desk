@@ -12,22 +12,24 @@ const TicketSchema = new Schema({
     ref: 'User',
   },
   status: {
-    type: String, 
-    default: 'open',
-    enum: ['open', 'assigned', 'under review', 'awaiting response', 'working on it', 'complete']
+    type: String,
+    default: 'Open',
+    enum: ['Open', 'Assigned', 'Under review', 'Awaiting response', 'Working on it', 'Complete']
   },
   typeOfTicket: {
-    type: String, 
-    default: 'hardware',
-    enum: ['hardware', 'software', 'account', 'password', 'other']
+    type: String,
+    default: 'Hardware',
+    enum: ['Hardware', 'Software', 'Account', 'Password', 'Other']
   },
   assignedTech: {
     type: SchemaTypes.ObjectId,
     ref: 'User',
   },
   techNotes: [
-    { body: String, 
-      date: Date }
+    {
+      body: String,
+      date: Date
+    }
   ],
   dueDate: {
     type: Date,

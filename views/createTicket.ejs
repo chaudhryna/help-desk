@@ -1,30 +1,31 @@
 <%- include('partials/header') -%>
+  <%- include('partials/navbar') -%>
 
-<div class="container">
-  <h2>Submit a ticket</h2>
+    <div class="container mt-5 col-6">
+      <h2>Submit a ticket</h2>
 
-  <form action="/ticket/createTicket" method="POST">
-    <div class="mb-3">
-      <label for="shortDesc" class="form-label">Short Description</label>
-      <input type="text" class="form-control" id="shortDesc" name="shortDesc">
+      <form action="/ticket/createTicket" method="POST">
+        <div class="mb-3">
+          <label for="shortDesc" class="form-label">Short Description</label>
+          <input type="text" class="form-control" id="shortDesc" name="shortDesc">
+        </div>
+        <div class="mb-3">
+          <label for="details" class="form-label">Detailed Description</label>
+          <textarea class="form-control" id="details" name="details"></textarea>
+        </div>
+        <div class="mb-3">
+          <label for='typeOfTicket'>Type of Issue</label>
+          <select id='typeOfTicket' class="form-select" name='typeOfTicket'>
+            <option value='Hardware' selected>Hardware</option>
+            <option value='Software'>Software</option>
+            <option value='Account'>Account</option>
+            <option value='Password'>Password</option>
+            <option value='Other'>Other</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+      </form>
     </div>
-    <div class="mb-3">
-      <label for="details" class="form-label">Detailed Description</label>
-      <textarea class="form-control" id="details" name="details"></textarea>
-    </div>
-    <div class="mb-3">
-      <label for='typeOfTicket'>Type of Issue</label>
-      <select id='typeOfTicket' class="form-select" name='typeOfTicket'>
-        <option value='hardware' selected>Hardware</option>
-        <option value='software'>Software</option>
-        <option value='account'>Account</option>
-        <option value='password'>Password</option>
-        <option value='other'>Other</option>
-      </select>
-    </div>
 
-    <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-  </form>
-</div>
-
-<%- include('partials/footer') -%>
+    <%- include('partials/footer') -%>

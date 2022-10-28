@@ -1,43 +1,53 @@
 <%- include('partials/header') -%>
-<div class="container-md">
-  <div class="row mt-5">
-      <div class="col">
+  <%- include('partials/navbar') -%>
+    <div class="container-md">
+      <div class="row mt-5">
+        <div class="col">
+          <h2 class="mb-5">My Profile</h2>
           <div>
-              <p><strong>Name</strong>: <%= user.fullName %></p>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <p><strong>Role</strong>: <%= user.role %></p>
-              <a href="/logout" class="btn btn-primary">Logout</a>
+            <p><strong>Name</strong>: <%= user.fullName %>
+            </p>
+            <p><strong>User Name</strong>: <%= user.userName %>
+            </p>
+            <p><strong>Email</strong>: <%= user.email %>
+            </p>
+            <p><strong>Role</strong>: <%= user.role %>
+            </p>
           </div>
           <div class="mt-5">
             <a class="btn btn-primary" href="/ticket/createTicket">Submit a New Ticket</a>
           </div>
-      </div>
-      <div class="col-9">
-        <h2>My Open Tickets</h2>
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<tickets.length; i++) {%>
-          <li class="col mt-5">
-            <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 25rem;">
-              <div class="card-body">
-                <h5 class="card-title">Ticket: <%= tickets[i]._id %>
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">Opened by: <%= user.fullName %>
-                </h6>
-                <p class="card-text">
-                  <%= tickets[i].shortDesc %>
-                </p>
-                <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
-              </div>
-            </div>
-          </li>
+        </div>
+        <div class="col-9">
+          <h2>My Open Tickets</h2>
+          <hr>
+
+          <% if (tickets.length > 0){ %>
+            <ul class="row list-unstyled">
+              <% for(var i=0; i<tickets.length; i++) {%>
+                <li class="col mt-5">
+                  <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 25rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Ticket: <%= tickets[i]._id %>
+                      </h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Opened by: <%= user.fullName %>
+                      </h6>
+                      <p class="card-text">
+                        <span class="text-muted">Subject:</span>
+                        <%= tickets[i].shortDesc %>
+                      </p>
+                      <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
+                    </div>
+                  </div>
+                </li>
+              <% } %>
+          </ul>
+        <% } else { %>
+          <h5 class="fst-italic">There are no tickets to display.</h5>
         <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">List All Open Tickets</a>
-        </div>  
-      </div>  
+      
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-<%- include('partials/footer') -%>
+    </div>
+    <%- include('partials/footer') -%>

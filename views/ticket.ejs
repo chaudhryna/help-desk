@@ -1,4 +1,5 @@
 <%- include('partials/header') -%>
+<%- include('partials/navbar') -%>
 
   <div class="container">
     <div class="row justify-content-center mt-5">
@@ -12,8 +13,11 @@
           <p>
             <strong>Type of Issue:</strong>  <%= ticket.typeOfTicket %>
           </p>
+          <p>
+            <strong>Status:</strong> <%= ticket.status %>
+          </p>
           <p class="card-text">
-            <%= ticket.shortDesc %>
+            <span class="text-muted">Subject:</span> <%= ticket.shortDesc %>
           </p>
           <p>
             <%= ticket.details %>
