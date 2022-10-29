@@ -33,6 +33,7 @@ module.exports = {
   },
   getCreateTicket: async (req, res) => {
     try {
+      const ticket = await Ticket.findById(req.params.id).populate('user').lean();
       await res.render("createTicket.ejs");
     } catch (err) {
       console.error(err);
@@ -53,11 +54,42 @@ module.exports = {
     }
   },
 
+  getUpdateTicket: async (req, res) => {
+    try {
+      const ticket = await Ticket.findById(req.params.id).populate('user').lean();
+      await res.render("updateTicket.ejs", { ticket: ticket, user: req.user });
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
+  putUpdateTicket: async (req, res) => {
+    try {
+      let ticket = await Ticket.findById(req.params.id).lean();
+
+      if (!ticket) {
+        return res.render('error/404')
+      }
+
+      ticket = await Ticket.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body, 
+        { new: true,
+        runValidators: true },
+      );
+
+      res.redirect("/feed");
+    } catch(err) {
+      console.error(err);
+      res.render('error/500');
+    }
+  },
+
   deleteTicket: async (req, res) => {
     try {
       // Find ticket by id
       let ticket = await Ticket.findById({ _id: req.params.id });
-      console.log(`Ticket: ${req.params.id}` )
+      console.log(`Ticket: ${req.params.id}`)
       // Delete post from db
       await Ticket.remove({ _id: req.params.id });
       console.log("Deleted Ticket");

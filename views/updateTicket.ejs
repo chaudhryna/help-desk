@@ -1,0 +1,58 @@
+<%- include('partials/header') -%>
+  <%- include('partials/navbar') -%>
+
+    <div class="container mt-5 col-6">
+      <div class="card shadow p-3 mb-5 bg-custom rounded">
+        <div class="card-body">
+          <h2 class="d-flex justify-content-between">Update/Assign Ticket <span class="status ">
+              <%= ticket.status %>
+            </span></h2>
+          <hr>
+
+          <h3>Ticket: <%= ticket._id %>
+          </h3>
+          <p><strong>Created on: </strong>
+            <%= ticket.createdAt %>
+          </p>
+          <p><strong>Type of Issue: </strong>
+            <%= ticket.typeOfTicket %>
+          </p>
+
+          <p><strong>Short Description: </strong>
+            <%= ticket.shortDesc %>
+          </p>
+          <p><strong>Details: </strong>
+            <%= ticket.details %>
+          </p>
+          <hr>
+          <form action="/ticket/updateTicket/<%= ticket._id %>" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="mb-3">
+              <label for="assignedTech" class="form-label fw-bold">Assigned Tech: </label>
+              <input type="text" class="form-control" id="assignedTech" name="assignedTech"
+                value="<%= ticket.assignedTech %>">
+            </div>
+            <div class="mb-3">
+              <label for='status' class="form-label fw-bold">Update Status:</label>
+              <select id='status' class="form-select" name='status'>
+                <option value='Open' selected>Open</option>
+                <option value='Assigned'>Assigned</option>
+                <option value='Under review'>Under review</option>
+                <option value='Awaiting response'>Awaiting response</option>
+                <option value='Working on it'>Working on it</option>
+                <option value='Complete'>Complete</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for='techNotes' class="form-label fw-bold">Tech Notes:</label>
+              <textarea class="form-control" name="techNotes" id="techNotes"></textarea>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" value="save">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <%- include('partials/footer') -%>

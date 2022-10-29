@@ -5,7 +5,6 @@ const homeController = require("../controllers/home");
 const ticketsController = require("../controllers/tickets");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 
-//Main Routes - simplified for now
 router.get("/", homeController.getIndex);
 router.get("/profile", ensureAuth, ticketsController.getProfile);
 router.get('/ticket/createTicket', ensureAuth, ticketsController.getCreateTicket);

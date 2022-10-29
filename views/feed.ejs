@@ -17,7 +17,11 @@
                 <p class="card-text">
                   <span class="text-muted">Subject:</span> <%= tickets[i].shortDesc %>
                 </p>
-                <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
+                <% if (user.role === 'Customer') {%>
+                  <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
+                <% } else { %>
+                  <a href="/ticket/updateTicket/<%= tickets[i]._id%>" class="btn btn-primary">Update Ticket</a>
+                <% } %>
               </div>
             </div>
   
