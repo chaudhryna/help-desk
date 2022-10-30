@@ -28,22 +28,13 @@ const TicketSchema = new Schema({
   techNotes: [
     {
       body: String,
-      date: Date
+      date: Date,
     }
   ],
   dueDate: {
     type: Date,
-    default: Date.now,
   },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-  createdAt: {
-    type: Date,
-    immutible: true,
-    default: Date.now,
-  },
-});
+}, 
+  { timestamps: true });
 
 module.exports = mongoose.model("Ticket", TicketSchema);

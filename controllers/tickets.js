@@ -14,9 +14,9 @@ module.exports = {
     let tickets 
     try {
       if (req.user.role === 'Customer') {
-        tickets = await Ticket.find({ user: req.user.id }).sort({ createdAt: "desc" }).populate('user').lean();
+        tickets = await Ticket.find({ user: req.user.id }).sort({ createdAt: "desc" }).populate('user').populate('assignedTech').lean();
       } else {
-        tickets = await Ticket.find().sort({ createdAt: "desc" }).populate('user').lean();
+        tickets = await Ticket.find().sort({ createdAt: "desc" }).populate('user').populate('assignedTech').lean();
       }
       res.render("feed.ejs", { tickets: tickets, user: req.user });
     } catch (err) {
@@ -56,8 +56,10 @@ module.exports = {
 
   getUpdateTicket: async (req, res) => {
     try {
-      const ticket = await Ticket.findById(req.params.id).populate('user').lean();
-      await res.render("updateTicket.ejs", { ticket: ticket, user: req.user });
+      const ticket = await Ticket.findById(req.params.id).populate('user').populate('assignedTech').lean();
+      const techs = await User.find({ role: 'Tech' });
+
+      await res.render("updateTicket.ejs", { ticket: ticket, user: req.user, techs: techs });
     } catch (err) {
       console.error(err);
     }
@@ -65,20 +67,18 @@ module.exports = {
 
   putUpdateTicket: async (req, res) => {
     try {
-      let ticket = await Ticket.findById(req.params.id).lean();
-
-      if (!ticket) {
-        return res.render('error/404')
+      const ticket = await Ticket.findById({ _id: req.params.id })
+      ticket.status = req.body.status
+      if (req.body.dueDate) {
+        ticket.dueDate = req.body.dueDate
       }
-
-      ticket = await Ticket.findOneAndUpdate(
-        { _id: req.params.id },
-        req.body, 
-        { new: true,
-        runValidators: true },
-      );
-
-      res.redirect("/feed");
+      ticket.assignedTech = req.body.assignedTech
+      if (req.body.techNotes) {
+        ticket.techNotes.push({ body: req.body.techNotes, date: Date.now() })
+      }
+      ticket.save()
+      res.redirect('/feed')
+      console.log('Ticket updated')
     } catch(err) {
       console.error(err);
       res.render('error/500');
