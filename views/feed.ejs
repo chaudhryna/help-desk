@@ -3,7 +3,7 @@
 
   <div class="container">
     <div class="row justify-content-center mt-5">
-      <h2>My Open Tickets</h2>
+      <h2>All Tickets</h2>
       <hr />
       
       <ul class="row list-unstyled">
@@ -22,6 +22,9 @@
                     <span class="text-muted">Assigned Tech: </span><%= tickets[i].assignedTech.firstName %> 
                     <%= tickets[i].assignedTech.lastName %>
                   </p>
+                  <p class="text-muted">Status: <span class="status">
+                    <%= tickets[i].status %>
+                  </span></p>
                 <% } %>
                 <% if (user.role === 'Customer') {%>
                   <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>

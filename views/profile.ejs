@@ -4,6 +4,7 @@
       <div class="row mt-5">
         <div class="col">
           <h2 class="mb-5">My Profile</h2>
+          
           <div>
             <p><strong>Name</strong>: <%= user.fullName %>
             </p>
@@ -19,7 +20,7 @@
           </div>
         </div>
         <div class="col-9">
-          <h2>My Open Tickets</h2>
+          <h2>My Tickets</h2>
           <hr>
 
           <% if (tickets.length > 0){ %>
@@ -36,6 +37,16 @@
                         <span class="text-muted">Subject:</span>
                         <%= tickets[i].shortDesc %>
                       </p>
+                      <% if (tickets[i].assignedTech) {%>
+                        <p class="card-text">
+                          <span class="text-muted">Assigned Tech: </span>
+                          <%= tickets[i].assignedTech.firstName %>
+                            <%= tickets[i].assignedTech.lastName %>
+                        </p>
+                        <p class="text-muted">Status: <span class="status">
+                            <%= tickets[i].status %>
+                          </span></p>
+                        <% } %>
                       <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
                     </div>
                   </div>

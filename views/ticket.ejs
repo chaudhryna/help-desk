@@ -1,9 +1,9 @@
 <%- include('partials/header') -%>
 <%- include('partials/navbar') -%>
 
-  <div class="container">
+  <div class="container col-6">
     <div class="row justify-content-center mt-5">
-      <div class="card shadow p-3 mb-5 bg-body rounded" style="width: 30rem;">
+      <div class="card shadow p-3 mb-5 bg-body rounded">
         <div class="card-body">
           <h5 class="card-title">Ticket: <%= ticket._id %>
           </h5>
@@ -31,9 +31,9 @@
   
         </div>
       </div>
-      <div class="text-center" mt-5">
+      <div class="d-lg-flex justify-content-between">
         <a class="btn btn-primary" href="/profile">Return to Profile Page</a>
-        <a class="btn btn-primary" href="/feed">Return to All Open Tickets</a>
+        <a class="btn btn-primary" href="/feed">Return to All Tickets</a>
       </div>
     </div>
   </div>

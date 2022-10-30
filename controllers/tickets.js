@@ -16,7 +16,7 @@ module.exports = {
       if (req.user.role === 'Customer') {
         tickets = await Ticket.find({ user: req.user.id }).sort({ createdAt: "desc" }).populate('user').populate('assignedTech').lean();
       } else {
-        tickets = await Ticket.find().sort({ createdAt: "desc" }).populate('user').populate('assignedTech').lean();
+        tickets = await Ticket.find().sort({status: 1 }).populate('user').populate('assignedTech').lean();
       }
       res.render("feed.ejs", { tickets: tickets, user: req.user });
     } catch (err) {
@@ -58,7 +58,7 @@ module.exports = {
     try {
       const ticket = await Ticket.findById(req.params.id).populate('user').populate('assignedTech').lean();
       const techs = await User.find({ role: 'Tech' });
-
+      
       await res.render("updateTicket.ejs", { ticket: ticket, user: req.user, techs: techs });
     } catch (err) {
       console.error(err);

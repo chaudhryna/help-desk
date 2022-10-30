@@ -17,36 +17,39 @@
                 <%= ticket.createdAt.toDateString() %>
               </p>
               <% if (ticket.dueDate) {%>
-              <p><strong>Due date: </strong>
-                <%= ticket.dueDate %>
-              </p>
-              <% } %>
-              <p><strong>Type of Issue: </strong>
-                <%= ticket.typeOfTicket %>
-              </p>
-
-              <p><strong>Short Description: </strong>
-                <%= ticket.shortDesc %>
-              </p>
-              <p><strong>Details: </strong>
-                <%= ticket.details %>
-              </p>
-              <hr>
-              <% if (ticket.assignedTech) {%>
-                <p><strong>Assigned Tech:</strong> <%= ticket.assignedTech.firstName %> <%= ticket.assignedTech.lastName %></p>
-              <% } %>
-              <hr>
-              <p><strong>Tech Notes:</strong></p>
-              <% for(let i=0; i<ticket.techNotes.length; i++) { %>
-                <p>
-                  <%= ticket.techNotes[i].date.toDateString() %> - 
-                  <%= ticket.techNotes[i].body %>
+                <p><strong>Due date: </strong>
+                  <%= ticket.dueDate.toDateString() %>
                 </p>
                 <% } %>
-              
-            
+                  <p><strong>Type of Issue: </strong>
+                    <%= ticket.typeOfTicket %>
+                  </p>
+
+                  <p><strong>Short Description: </strong>
+                    <%= ticket.shortDesc %>
+                  </p>
+                  <p><strong>Details: </strong>
+                    <%= ticket.details %>
+                  </p>
+                  <hr>
+                  <% if (ticket.assignedTech) {%>
+                    <p><strong>Assigned Tech:</strong>
+                      <%= ticket.assignedTech.firstName %>
+                        <%= ticket.assignedTech.lastName %>
+                    </p>
+                    <% } %>
+                      <hr>
+                      <p><strong>Tech Notes:</strong></p>
+                      <% for(let i=0; i<ticket.techNotes.length; i++) { %>
+                        <p>
+                          <%= ticket.techNotes[i].date.toDateString() %> -
+                            <%= ticket.techNotes[i].body %>
+                        </p>
+                        <% } %>
+
+
             </div>
-            
+
             <div class="col-lg-6">
               <h3>Update Ticket</h3>
               <form action="/ticket/updateTicket/<%= ticket._id %>?_method=PUT" method="POST">
@@ -54,7 +57,7 @@
                 <div class="mb-3">
                   <label for='status' class="form-label fw-bold">Update Status:</label>
                   <select id='status' class="form-select" name='status'>
-                    <option value='Open' selected>Open</option>
+                    <option value='Open'>Open</option>
                     <option value='Assigned'>Assigned</option>
                     <option value='Under review'>Under review</option>
                     <option value='Awaiting response'>Awaiting response</option>
@@ -71,13 +74,16 @@
 
                   <select id='assignedTech' class="form-select" name='assignedTech'>
                     <% for (let i=0; i < techs.length; i++) {%>
-                      <option value='<%= techs[i].id %>'>
+                      <% if (ticket.assignedTech.email === techs[i].email) {%>
+                        <option value='<%= techs[i].id %>' selected>
+                      <% } else {%>
+                        <option value='<%= techs[i].id %>'>
+                      <% } %>
                         <%= techs[i].firstName %>
                           <%= techs[i].lastName %>
-                      </option>
-                      <% } %>
+                        </option>
+                    <% } %>
                   </select>
-
                 </div>
                 <div class="mb-3">
                   <label for='techNotes' class="form-label fw-bold">Tech Notes:</label>
