@@ -4,7 +4,7 @@ const User = require("../models/User");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const tickets = await Ticket.find({ user: req.user.id }).sort({ createdAt: "desc" });
+      const tickets = await Ticket.find({ user: req.user.id }).populate('assignedTech').sort({ createdAt: "desc" });
       res.render("profile.ejs", { tickets: tickets, user: req.user });
     } catch (err) {
       console.log(err);
