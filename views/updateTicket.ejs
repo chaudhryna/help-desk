@@ -74,11 +74,12 @@
 
                   <select id='assignedTech' class="form-select" name='assignedTech'>
                     <% for (let i=0; i < techs.length; i++) {%>
-                      <% if (ticket.assignedTech.email === techs[i].email) {%>
-                        <option value='<%= techs[i].id %>' selected>
-                      <% } else {%>
-                        <option value='<%= techs[i].id %>'>
-                      <% } %>
+                        <% if (ticket.assignedTech && ticket.assignedTech.email === techs[i].email) {%>
+                          <option value='<%= techs[i].id %>' selected>
+                        <% } else {%>
+                          <option value='<%= techs[i].id %>'>
+                        <% } %>
+                      
                         <%= techs[i].firstName %>
                           <%= techs[i].lastName %>
                         </option>
