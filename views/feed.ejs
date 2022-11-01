@@ -17,15 +17,16 @@
                 <p class="card-text">
                   <span class="text-muted">Subject:</span> <%= tickets[i].shortDesc %>
                 </p>
-                <% if (tickets[i].assignedTech)  {%>
+                <% if (tickets[i].assignedTech) {%>
                   <p class="card-text">
                     <span class="text-muted">Assigned Tech: </span><%= tickets[i].assignedTech.firstName %> 
                     <%= tickets[i].assignedTech.lastName %>
                   </p>
+                <% } %>
                   <p class="text-muted">Status: <span class="status">
                     <%= tickets[i].status %>
                   </span></p>
-                <% } %>
+                
                 <% if (user.role === 'Customer') {%>
                   <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
                 <% } else { %>
