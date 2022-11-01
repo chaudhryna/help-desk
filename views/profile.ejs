@@ -4,7 +4,7 @@
       <div class="row mt-5">
         <div class="col">
           <h2 class="mb-5">My Profile</h2>
-          
+
           <div>
             <p><strong>Name</strong>: <%= user.fullName %>
             </p>
@@ -23,7 +23,7 @@
           <h2>My Tickets</h2>
           <hr>
 
-          <% if (tickets.length > 0){ %>
+          <% if (tickets.length> 0){ %>
             <ul class="row list-unstyled">
               <% for(var i=0; i<tickets.length; i++) {%>
                 <li class="col mt-5">
@@ -43,20 +43,21 @@
                           <%= tickets[i].assignedTech.firstName %>
                             <%= tickets[i].assignedTech.lastName %>
                         </p>
-                        <p class="text-muted">Status: <span class="status">
-                            <%= tickets[i].status %>
-                          </span></p>
                         <% } %>
-                      <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
+                          <p class="text-muted">Status: <span class="status">
+                              <%= tickets[i].status %>
+                            </span></p>
+
+                          <a href="/ticket/<%= tickets[i]._id%>" class="btn btn-primary">Ticket Details</a>
                     </div>
                   </div>
                 </li>
+                <% } %>
+            </ul>
+            <% } else { %>
+              <h5 class="fst-italic">There are no tickets to display.</h5>
               <% } %>
-          </ul>
-        <% } else { %>
-          <h5 class="fst-italic">There are no tickets to display.</h5>
-        <% } %>
-      
+
         </div>
       </div>
     </div>
