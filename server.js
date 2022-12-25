@@ -14,7 +14,7 @@ const ticketRoutes = require("./routes/tickets");
 const morgan = require('morgan');
 
 //Use .env file in config folder
-require("dotenv").config({ path: "./config/.env" });
+require("dotenv").config({path: './config/.env'});
 
 // Passport config
 require("./config/passport")(passport);
@@ -23,10 +23,10 @@ require("./config/passport")(passport);
 connectDB();
 
 //Using EJS for views
-app.set("view engine", "ejs");
+app.set('view engine', 'ejs');
 
 //Static Folder
-app.use(express.static("public"));
+app.use(express.static('public'));
 
 //Body Parsing
 app.use(express.urlencoded({ extended: true }));
@@ -61,12 +61,10 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 //Setup Routes For Which The Server Is Listening
-app.use("/", mainRoutes);
-app.use("/ticket", ticketRoutes);
-
-const PORT = process.env.PORT || 2121;
+app.use('/', mainRoutes);
+app.use('/ticket', ticketRoutes);
 
 //Server Running
 app.listen(process.env.PORT, () => {
-  console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+  console.log(`Server is running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`);
 });
