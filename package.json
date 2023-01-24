@@ -2,10 +2,13 @@
 	"name": "help-desk",
 	"version": "1.0.0",
 	"description": "100hour project",
+	"homepage": "https://chaudhryna.github.io/help-desk",
 	"main": "server.js",
 	"scripts": {
 		"start": "node server",
 		"dev": "nodemon server",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"author": "Nancy Chaudhry",
@@ -29,6 +32,7 @@
 	},
 	"devDependencies": {
 		"cross-env": "^7.0.3",
+		"gh-pages": "^5.0.0",
 		"nodemon": "^2.0.7"
 	}
 }
